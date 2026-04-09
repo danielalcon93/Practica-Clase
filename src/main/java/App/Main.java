@@ -41,9 +41,7 @@ public class Main {
          * 3. Obtener una lista con las fechas/horas de todas las tomas de datos.
          */
         IO.println("-----------------------------");
-        lista.stream()
-                .map(Registro::getFechaHora)
-                .forEach(System.out::println);
+
 
         /**
          * 4. Incrementar en 5 unidades la humedad de todos los registros y mostrar las temperaturas,
@@ -98,7 +96,22 @@ public class Main {
          * 9. Cuenta los registros que tengan temperatura mayor a 35 grados (count()).
          */
         IO.println("------------------------------");
-        lista.stream()
+        long cuenta = lista.stream()
+                .filter(r -> r.getTemperatura() > 35)
+                .count();
+        IO.println("Registros: " + cuenta);
+
+        /**
+         * 10. Calcular la temperatura promedio de todos los registros (transformarlo en Stream<Double> y
+         * llamar a average()).
+         */
+        IO.println("------------------------------");
+        Double temperatura = lista.stream()
+                .mapToDouble(Registro::getTemperatura)
+                .average()
+                .orElse(0);
+        IO.println("Temperatura media: " + temperatura + " Grados");
+
 
 
 
