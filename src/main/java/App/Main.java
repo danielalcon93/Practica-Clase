@@ -24,8 +24,8 @@ public class Main {
         IO.println("----- Ejercicio 1 -----");
         lista.stream()
                 .filter(r -> r.getTemperatura() > 25)
-                .filter(r -> r.getHumedad() > 70)
-                .filter(r -> r.getFechaHora().isAfter(LocalDateTime.now()))
+                .filter(r -> r.getHumedad() < 70)
+                .filter(r -> r.getFechaHora().isBefore(LocalDateTime.now()))
                 .forEach(System.out::println);
 
 
@@ -53,7 +53,11 @@ public class Main {
          * humedades y fechas/horas actualizadas.
          */
         IO.println("----- Ejercicio 4 -----");
-        IO.println(" No se hacerlo :( ");
+        lista.stream()
+                .map(r -> new Registro(r.getFechaHora(),
+                        r.getTemperatura(),
+                        r.getHumedad() + 5))
+                .forEach(System.out::println);
 
 
         /**
